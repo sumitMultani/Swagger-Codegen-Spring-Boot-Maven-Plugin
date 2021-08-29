@@ -1,0 +1,88 @@
+openapi: 3.0.0
+
+info:
+  version: 0.0.1
+  title: Student Service
+  description: The Student service
+
+tags:
+  - name: "Student"
+
+paths:
+  /add/student:
+    post:
+      summary: Add a new student.
+      tags:
+        - "Student"
+      parameters:
+      - name: correlation-id
+        in: header
+        description: correlationId to track request.
+        required: true
+        schema:
+          type: string
+          format: ""
+      requestBody:
+        $ref: '#/components/requestBodies/StudentBody'
+      operationId: addStudent
+      responses:
+        '201':
+          description: Created
+  /get/students:
+    get:
+      parameters:
+      - name: correlation-id
+        in: header
+        description: ID of pet to fetch
+        required: true
+        schema:
+          type: string
+          format: ""
+         
+      summary: Get all students.
+      tags:
+        - "Student"
+
+      description: This is a Student service description
+      operationId: getAllStudent
+      responses:
+        "200":
+          description: This means its ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+components:
+  schemas:
+    Student:
+      description: This is the Student model.
+      type: object
+      properties:
+        id:
+          description: The ID of Student.
+          type: integer
+        first_name:
+          description: The FirstName of student.
+          type: string
+        last_name:
+          description: The LastName of Student.
+          type: string
+        section:
+          description: The Class Section of student.
+          type: string
+        city:
+          description: The City Name of Student.
+          type: string
+        name:
+          description: The Full Name of student.
+          type: string
+  requestBodies:
+    StudentBody:
+      description: A JSON object containing pet information
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Student'

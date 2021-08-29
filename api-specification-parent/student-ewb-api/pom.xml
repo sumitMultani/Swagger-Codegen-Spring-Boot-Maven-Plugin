@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gain.java.kowledge</groupId>
+		<artifactId>api-specification-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>student-ewb-api</artifactId>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>5.1.0</version>
+				<executions>
+					<execution>
+						<id>openapi-codegen-java-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+
+						<configuration>
+							<inputSpec>D:\Eclipse_Projects\Spring_Demo\api-specification-parent\api\student-api.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<generateApiTests>false</generateApiTests>
+							<modelPackage>com.gain.java.knowledge.api.model</modelPackage>
+							<apiPackage>com.gain.java.knowledge.api</apiPackage>
+							<output>${project.build.directory}</output>
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<configOptions>
+								<interfaceOnly>true</interfaceOnly>
+								<sourceFolder>generated-sources</sourceFolder>
+								<dateLibrary>java8</dateLibrary>
+								<returnResponse>true</returnResponse>
+								<library>spring-boot</library>
+								<useTags>true</useTags>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<useSwaggerAnnotations>false</useSwaggerAnnotations>
+								<serializableModel>true</serializableModel>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
